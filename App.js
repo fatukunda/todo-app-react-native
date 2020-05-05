@@ -1,19 +1,25 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
+import AddTodo from "./components/AddTodo";
 
-export default function App() {
+const App = () => {
+  const [todos, setTodos] = useState([]);
+  const addTodo = (todo) => {
+    setTodos((currentTodos) => [...currentTodos, todo]);
+  };
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <View>
+      <AddTodo addTodoItem={addTodo} />
+      <ScrollView>
+        {todos.map((todo) => (
+          <Vie>
+            <Text>{todo}</Text>
+          </Vie>
+        ))}
+      </ScrollView>
     </View>
   );
-}
+};
+export default App;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const styles = StyleSheet.create({});
