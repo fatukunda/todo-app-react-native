@@ -21,11 +21,19 @@ const TodoList = () => {
     setIsModalVisible(false);
   };
   const addNewTodo = () => {
-    setIsModalVisible(true)
-  }
+    setIsModalVisible(true);
+  };
+  const deleteItemHandler = (id) => {
+    const filteredTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(filteredTodos);
+  };
   return (
-    <View style={styles.addBtn}> 
-      <AddTodo addTodoItem={addTodo} isVisible={isVisible} setModalVisible={setIsModalVisible} />
+    <View style={styles.addBtn}>
+      <AddTodo
+        addTodoItem={addTodo}
+        isVisible={isVisible}
+        setModalVisible={setIsModalVisible}
+      />
       <View>
         <Button title="Add" onPress={addNewTodo} />
       </View>
@@ -33,7 +41,7 @@ const TodoList = () => {
         style={styles.todos}
         data={todos}
         renderItem={({ item }) => (
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => deleteItemHandler(item.id)}>
             <View style={styles.todo}>
               <Text style={styles.todoText}>{item.text}</Text>
             </View>
